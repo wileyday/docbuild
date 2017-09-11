@@ -1,0 +1,27 @@
+#!/usr/bin/env node
+'use strict';
+
+const docbuild = require('../index.js');
+
+var ArgumentParser = require('argparse').ArgumentParser;
+var parser = new ArgumentParser({
+  version: '0.0.1',
+  addHelp: true,
+  description: 'Argparse example'
+});
+parser.addArgument(
+  [ '-s', '--source' ],
+  {
+    help: 'source directory'
+  }
+);
+parser.addArgument(
+  [ '-d', '--destination' ],
+  {
+    help: 'destination directory'
+  }
+);
+var args = parser.parseArgs();
+console.dir(args);
+
+docbuild(args.source, args.destination)
