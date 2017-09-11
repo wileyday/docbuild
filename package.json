@@ -1,0 +1,19 @@
+{
+  "name": "docbuild",
+  "version": "1.0.2",
+  "description": "COOLSMS documentation builder",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "wiley",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  },
+  "dependencies": {
+    "gitdown": "^2.5.0",
+    "markdown-it": "^8.4.0",
+    "markdown-it-deflist": "^2.0.3"
+  }
+}
