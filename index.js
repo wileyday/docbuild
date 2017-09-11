@@ -1,6 +1,16 @@
+const hljs = require('highlight.js');
 const Gitdown = require('gitdown');
 const MarkdownIt = require('markdown-it');
-const md = new MarkdownIt();
+const md = new MarkdownIt({
+  highlight: function (str, lang) {
+    if (lang && hljs.getLanguage(lang)) {
+      try {
+        return hljs.highlight(lang, str).value;
+      } catch (__) {}
+    }
+    return '';
+  }
+});
 md.use(require('markdown-it-deflist'));
 const fs = require('fs');
 const path = require('path');
