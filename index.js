@@ -14,6 +14,11 @@ const md = new MarkdownIt({
   }
 });
 md.use(require('markdown-it-deflist'));
+md.use(require('markdown-it-named-headers'), {
+  slugify: function(inputString) {
+    return inputString;
+  }
+});
 const fs = require('fs');
 const path = require('path');
 
