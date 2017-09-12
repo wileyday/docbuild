@@ -3,12 +3,14 @@ const Gitdown = require('gitdown');
 const MarkdownIt = require('markdown-it');
 const md = new MarkdownIt({
   highlight: function (str, lang) {
-    if (lang && hljs.getLanguage(lang)) {
-      try {
-        return hljs.highlight(lang, str).value;
-      } catch (__) {}
+    let outputString = '';
+    if (lang === 'syntax') {
+      outputString = '<pre-syntax>{{< highlight json >}}' + str + '{{< /highlight >}}</pre-syntax>';
+      console.log(outputString);
+    } else {
+      outputString = '<pre-code>{{< highlight ' + lang + '>}}' + str + '{{< /highlight >}}</pre-code>';
     }
-    return '';
+    return outputString;
   }
 });
 md.use(require('markdown-it-deflist'));
