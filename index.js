@@ -84,6 +84,10 @@ function include(spaces, fileName) {
   const fileContent = fs.readFileSync(fileName).toString()
   const lines = fileContent.split("\n")
   for (let i = 0; i < lines.length; i++) {
+    if (lines[i].startsWith('%include')) {
+      const parameters = lines[i].split(' ')
+      lines[i] = include(parseInt(parameters[1]) + spaces, parameters[2])
+    }
     lines[i] = ' '.repeat(spaces) + lines[i]
   }
   return lines.join("\n")
