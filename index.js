@@ -12,7 +12,9 @@ const md = require('markdown-it')({
       outputString = '<pre-code>{{< highlight ' + lang + '>}}' + str + '{{< /highlight >}}</pre-code>'
     }
     return outputString
-  }
+  },
+  // markdown 내용 안에 HTML이 있는 경우 허용
+  html: true
 })
 
 // nested definition list 를 위해 사용
