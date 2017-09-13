@@ -1,6 +1,6 @@
 {
   "name": "docbuild",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "description": "COOLSMS documentation builder",
   "main": "index.js",
   "scripts": {

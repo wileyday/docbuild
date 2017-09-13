@@ -81,7 +81,14 @@ module.exports = (srcDir, destDir) => {
 // fileName의 파일의 읽어서 라인별로 spaces 만큼 공백을 왼쪽으로 채우고 
 // string을 리턴한다.
 function include(spaces, fileName) {
-  const fileContent = fs.readFileSync(fileName).toString()
+  const originDir = process.cwd()
+  const filePath = fs.realpathSync(fileName)
+  const dirPath = path.dirname(filePath)
+
+  // 중첩 include 를 위해 작업 디렉토리를 변경해두자
+  process.chdir(dirPath)
+
+  const fileContent = fs.readFileSync(filePath).toString()
   const lines = fileContent.split("\n")
   for (let i = 0; i < lines.length; i++) {
     if (lines[i].startsWith('%include')) {
@@ -90,5 +97,9 @@ function include(spaces, fileName) {
     }
     lines[i] = ' '.repeat(spaces) + lines[i]
   }
+
+  // 이전 디렉토리로 복귀
+  process.chdir(originDir)
+
   return lines.join("\n")
 }
